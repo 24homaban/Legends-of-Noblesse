@@ -1,4 +1,4 @@
-﻿# Legends of Noblesse (Pygame)
+# Legends of Noblesse (Pygame)
 
 This submission includes:
 - Full source code for the game.
@@ -92,3 +92,4 @@ This generates `dist/LegendsOfNoblesse.exe`.
 
 - If Windows SmartScreen prompts on first launch of the executable, choose **More info** then **Run anyway**.
 - If running from source fails with module errors, ensure the virtual environment is activated and dependencies were installed with `requirements.txt`.
+
