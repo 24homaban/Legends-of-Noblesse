@@ -12,7 +12,8 @@ venv/
 
 # Build artifacts
 build/
-dist/
+dist/*
+!dist/LegendsOfNoblesse.exe
 *.spec
 
 # OS/editor files
