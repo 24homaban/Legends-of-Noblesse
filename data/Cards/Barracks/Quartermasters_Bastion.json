@@ -1,0 +1,7 @@
+{
+	"name": "Quartermaster's Bastion",
+	"type": "Barracks",
+	"ability": "Emergency Provisioning",
+	"description": "During your Replenish Phase, if you have 2 or fewer Rations after normal gains, gain 1 additional Ration.",
+	"rations": 5
+}

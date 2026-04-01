@@ -1,0 +1,7 @@
+{
+	"name": "War-Wrought Citadel",
+	"type": "Barracks",
+	"ability": "Rapid Mobilization",
+	"description": "During your Preparations Phase, you may choose to play one Unit into a Battalion face-up instead of face-down. If you do, that Unit costs 1 less Ration to play.",
+	"rations": 4
+}

@@ -1,0 +1,23 @@
+{
+	"name": "Grand Strategist",
+	"type": "Class",
+	"xp": "Hold The Line",
+	"xp_description": "Gain 1 XP every time a Battlefield remains as Neutral Ground or under Your active Control.",
+	"levels": [
+		{
+			"level": 1,
+			"name": "Tactical Bluff",
+			"description": "Once per turn during the Preparations Phase, you may shuffle a card from your hand face-down into one of your unrevealed Battalions, then return a different face-down card from that Battalion to your hand."
+		},
+		{
+			"level": 3,
+			"name": "Calculated Deployment",
+			"description": "During the Siege Phase, if you lose the dice roll to determine who deploys first, you may pay 1 Magium to force a re-roll."
+		},
+		{
+			"level": 6,
+			"name": "Tactical Gambit",
+			"description": "Once per game, during the Siege Phase, after all Battalions have been deployed, but they are revealed, you may instantly swap the locations of your two Battalions."
+		}
+	]
+}

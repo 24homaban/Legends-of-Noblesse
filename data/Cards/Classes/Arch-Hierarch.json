@@ -1,0 +1,23 @@
+{
+	"name": "Arch-Hierarch",
+	"type": "Class",
+	"xp": "Divine Insight",
+	"xp_description": "Gain 1 XP every time you successfully activate a Non-Unit card during the Preparations Phase.",
+	"levels": [
+		{
+			"level": 1,
+			"name": "Efficient Tithe",
+			"description": "Once per turn during your Draw Phase, you may convert 2 Rations into 1 Special Resource of your choice."
+		},
+		{
+			"level": 3,
+			"name": "Holy Aegis",
+			"description": "During the Siege Phase, whenever you activate a Non-Unit card, you may choose one of your Units. it gains +1 Will until the end of the Phase."
+		},
+		{
+			"level": 6,
+			"name": "Miracle of Faith",
+			"description": "Once per game, during the Preparations Phase, you may pay 1 Sacrifice and 1 Faith. Return a Felled Unit from your Grave directly to one of your Battalions face-down."
+		}
+	]
+}

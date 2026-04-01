@@ -1,0 +1,6 @@
+{
+	"name": "Arcane Nexus",
+	"type": "Battlefield",
+	"ability": "Clairvoyance",
+	"description": "During your Replenish Phase, generate 1 Magium. During your Draw Phase, you may spend 1 Magium to draw a second card, then discard 1 card from your hand to the Grave."
+}

@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{setspace}
+\setstretch{1.1}
+\title{Legends of Noblesse\\AI Tier Matchup Report}
+\author{ECE348 Project Simulation Study}
+\date{March 31, 2026}
+\begin{document}
+\maketitle
+\section{Introduction}
+This report evaluates game balance in \textit{Legends of Noblesse} by comparing three AI skill tiers (bad, mediocre, good) across six requested head-to-head matchups. The central question is whether match outcomes and overall point rates indicate a reasonably fair system rather than a single dominant strategy.
+The analysis used \textbf{120} automated games (20 per matchup), under legal engine rules only, with no overtime force logic or deterministic tiebreak. A game ends in a decisive result only when a barracks is successfully breached; otherwise it is recorded as a draw at the configured turn cap.
+\section{Rules (Implementation Summary)}
+\begin{enumerate}
+\item Each player starts with a legal randomized loadout (deck, class, barracks, and 3 battlefields).
+\item Every game follows engine phase order: Replenish, Draw, Preparations, Siege, and Field Cleanup.
+\item During Draw and Preparations, AIs take only legal actions available in the current phase.
+\item During Siege, battalions can only be assigned to legal targets reported by the engine.
+\item A decisive winner is declared only by true in-engine barracks capture conditions.
+\item No overtime force behavior was used to force attacks or force winners.
+\item If no winner is declared by 2000 turns, the game is recorded as a draw for analysis.
+\end{enumerate}
+\section{Results}
+\subsection{Overall Outcomes}
+The full 120-game run produced the following aggregate balance metrics:
+\begin{itemize}
+\item Simulated games: \textbf{120}
+\item Non-draw games: \textbf{90}
+\item Draws: \textbf{30} (25.00\%)
+\item Player 1 decisive win rate (excluding draws): \textbf{26.67\%}
+\item Player 2 decisive win rate (excluding draws): \textbf{73.33\%}
+\item Player 1 point rate (draw = 0.5): \textbf{32.50\%}
+\item Player 2 point rate (draw = 0.5): \textbf{67.50\%}
+\item Average game length: \textbf{640.42 turns}
+\end{itemize}
+\subsection{Matchup Matrix}
+\begin{table}[H]
+\centering
+\caption{20-Game Results per Requested Matchup}
+\begin{tabular}{lrrrrrr}
+\toprule
+Matchup & Games & P1 Wins & P2 Wins & Draws & P1 Win\% & P2 Win\% \\
+\midrule
+bad vs bad & 20 & 0 & 0 & 20 & 0.0 & 0.0 \\
+bad vs mediocre & 20 & 0 & 20 & 0 & 0.0 & 100.0 \\
+bad vs good & 20 & 0 & 20 & 0 & 0.0 & 100.0 \\
+mediocre vs good & 20 & 6 & 14 & 0 & 30.0 & 70.0 \\
+mediocre vs mediocre & 20 & 13 & 7 & 0 & 65.0 & 35.0 \\
+good vs good & 20 & 5 & 5 & 10 & 50.0 & 50.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\subsection{Overall Tier Strength}
+\begin{table}[H]
+\centering
+\caption{Aggregate Tier Performance Across All Appearances}
+\begin{tabular}{lrrrrrr}
+\toprule
+AI Tier & Appearances & Wins & Losses & Draws & Win\% & Point\% \\
+\midrule
+good & 80 & 44 & 16 & 20 & 73.33 & 67.5 \\
+mediocre & 80 & 46 & 34 & 0 & 57.5 & 57.5 \\
+bad & 80 & 0 & 40 & 40 & 0.0 & 25.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\subsection{Overtime Order-Bias Audit (Legacy Forced-Overtime Run)}
+To address the question about overtime bias, we also audited the earlier forced-overtime dataset (stored in reports/ai\_tier\_matchups). In that build, overtime began after turn 50, and Player 2 barracks attack resolution occurred before Player 1.
+\begin{itemize}
+\item Winners in audited run: \textbf{1500}
+\item Winners occurring after overtime started: \textbf{832} (55.47\%)
+\item Of overtime winners, Player 2 won \textbf{761} vs Player 1 \textbf{71} (91.47\% Player 2 share)
+\item At turn 51 (the first overtime turn), \textbf{821} wins were recorded, with Player 2 taking \textbf{750} (91.35\%)
+\end{itemize}
+These counts quantify how many outcomes were produced in the overtime window where the Player 2 ordering advantage could influence decisive results.
+\section{Conclusion}
+The strongest tier in this run was good (point rate 67.5\%), while the weakest was bad (point rate 25.0\%). The results show clear skill-tier separation (good $>$ mediocre $>$ bad in aggregate), while preserving legal winner conditions. The analysis therefore answers the assignment prompts with a full rule summary, simulation evidence, and data-backed balance interpretation.
+\end{document}

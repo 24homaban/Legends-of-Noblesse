@@ -1,0 +1,7 @@
+﻿{
+  "name": "Iron Discipline",
+  "type": "Tactic",
+  "cost": {"rations": 1},
+  "ability": "Coordinated Orders",
+  "description": "Preparations: Choose a battalion. Units assigned from hand to that battalion cost 1 less Ration this Preparations phase."
+}

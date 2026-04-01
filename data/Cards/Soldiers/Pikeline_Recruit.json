@@ -1,0 +1,9 @@
+{
+	"name": "Pikeline Recruit",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 2},
+	"stats": {"might": 2, "will": 2},
+	"ability": "Hold Rank",
+	"description": "If this unit survives siege combat, it gains +1 Will until end of turn."
+}

@@ -1,0 +1,121 @@
+match_id,matchup,p1_ai,p2_ai,winner_label,winner_index,termination,turns_completed,loadout_deck,loadout_class,loadout_barracks,loadout_battlefields,p1_final_score,p2_final_score
+1,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Arcane Manipulators,Storm Warden,Quartermaster's Bastion,"Ironheart Forges, Breach Point, Bloodletting Altar",105.75,106.75
+2,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Inspiring Defenders,Storm Warden,Quartermaster's Bastion,"Bloodletting Altar, Grand Cathedral, Scorched Wastes",93.25,116.75
+3,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Inspiring Defenders,Vanguard,War-Wrought Citadel,"Breach Point, Ironheart Forges, Arcane Nexus",118.5,93.75
+4,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Ash Chancellor,Sanctum of the Fallen,"Scorched Wastes, Bloodletting Altar, Martyr’s Square",105.75,104.5
+5,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Storm Warden,War-Wrought Citadel,"Scorched Wastes, Breach Point, Bloodletting Altar",81.75,129.0
+6,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Arcane Manipulators,Grand Strategist,High Command Spire,"Grand Cathedral, Breach Point, Martyr’s Square",240.0,211.5
+7,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Ash Chancellor,Ossuary Keep,"Martyr’s Square, Bloodletting Altar, Grand Cathedral",119.25,96.0
+8,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Siege Masters,Storm Warden,High Command Spire,"Breach Point, Bloodletting Altar, Scorched Wastes",91.75,117.0
+9,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Siege Masters,Grand Strategist,Sanctum of the Fallen,"Scorched Wastes, Arcane Nexus, Bloodletting Altar",239.25,216.75
+10,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Arch-Hierarch,Ossuary Keep,"Grand Cathedral, Scorched Wastes, Hall of Mirrors",154.5,143.25
+11,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Arch-Hierarch,High Command Spire,"Arcane Nexus, Silent Chasm, Scorched Wastes",159.0,138.75
+12,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Siege Masters,Storm Warden,Sanctum of the Fallen,"Ironheart Forges, Bloodletting Altar, Arcane Nexus",93.75,116.25
+13,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Grand Strategist,Sanctum of the Fallen,"Arcane Nexus, Martyr’s Square, Scorched Wastes",241.5,192.5
+14,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Siege Masters,Ash Chancellor,Ossuary Keep,"Bloodletting Altar, Martyr’s Square, Scorched Wastes",81.5,129.75
+15,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Arch-Hierarch,War-Wrought Citadel,"Scorched Wastes, Breach Point, Hall of Mirrors",110.25,174.0
+16,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Arcane Manipulators,Vanguard,Ossuary Keep,"Martyr’s Square, Bloodletting Altar, Silent Chasm",93.75,117.0
+17,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Sacrificial Cult,Grand Strategist,War-Wrought Citadel,"Grand Cathedral, Hall of Mirrors, Arcane Nexus",187.5,259.5
+18,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Arcane Manipulators,Vanguard,Ossuary Keep,"Martyr’s Square, Breach Point, Scorched Wastes",105.0,107.25
+19,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Arcane Manipulators,Ash Chancellor,Ossuary Keep,"Grand Cathedral, Ironheart Forges, Bloodletting Altar",93.25,118.5
+20,bad_vs_bad,bad,bad,Draw,,turn_limit_draw,2001,Siege Masters,Vanguard,Sanctum of the Fallen,"Hall of Mirrors, Arcane Nexus, Martyr’s Square",93.0,116.25
+21,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,7,Inspiring Defenders,Ash Chancellor,War-Wrought Citadel,"Arcane Nexus, Grand Cathedral, Ironheart Forges",28.5,86.5
+22,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Inspiring Defenders,Vanguard,High Command Spire,"Grand Cathedral, Breach Point, Silent Chasm",8.25,90.25
+23,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,5,Arcane Manipulators,Grand Strategist,Sanctum of the Fallen,"Hall of Mirrors, Ironheart Forges, Breach Point",8.25,99.75
+24,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,8,Relentless Assault,Grand Strategist,High Command Spire,"Arcane Nexus, Martyr’s Square, Bloodletting Altar",10.0,105.25
+25,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,5,Sacrificial Cult,Vanguard,Sanctum of the Fallen,"Arcane Nexus, Silent Chasm, Hall of Mirrors",7.75,90.0
+26,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Siege Masters,Storm Warden,High Command Spire,"Martyr’s Square, Hall of Mirrors, Breach Point",7.0,94.25
+27,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Sacrificial Cult,Storm Warden,High Command Spire,"Breach Point, Bloodletting Altar, Silent Chasm",21.5,77.75
+28,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Sacrificial Cult,Grand Strategist,Sanctum of the Fallen,"Ironheart Forges, Breach Point, Silent Chasm",8.25,92.75
+29,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Sacrificial Cult,Ash Chancellor,Quartermaster's Bastion,"Ironheart Forges, Hall of Mirrors, Martyr’s Square",10.5,96.25
+30,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,5,Sacrificial Cult,Grand Strategist,Ossuary Keep,"Grand Cathedral, Ironheart Forges, Silent Chasm",6.5,98.0
+31,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,5,Inspiring Defenders,Grand Strategist,War-Wrought Citadel,"Hall of Mirrors, Arcane Nexus, Ironheart Forges",6.25,104.0
+32,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Arcane Manipulators,Storm Warden,High Command Spire,"Breach Point, Hall of Mirrors, Bloodletting Altar",8.5,89.5
+33,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,7,Siege Masters,Ash Chancellor,Sanctum of the Fallen,"Bloodletting Altar, Arcane Nexus, Silent Chasm",10.25,89.0
+34,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,8,Siege Masters,Storm Warden,High Command Spire,"Silent Chasm, Ironheart Forges, Arcane Nexus",11.5,92.5
+35,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Inspiring Defenders,Storm Warden,High Command Spire,"Ironheart Forges, Hall of Mirrors, Breach Point",7.75,92.25
+36,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Siege Masters,Ash Chancellor,Sanctum of the Fallen,"Ironheart Forges, Scorched Wastes, Silent Chasm",10.25,87.75
+37,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,7,Sacrificial Cult,Vanguard,Ossuary Keep,"Breach Point, Bloodletting Altar, Martyr’s Square",9.5,86.75
+38,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,7,Sacrificial Cult,Grand Strategist,Quartermaster's Bastion,"Martyr’s Square, Hall of Mirrors, Arcane Nexus",6.75,107.25
+39,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,6,Arcane Manipulators,Grand Strategist,War-Wrought Citadel,"Silent Chasm, Bloodletting Altar, Ironheart Forges",9.0,97.0
+40,bad_vs_mediocre,bad,mediocre,Player 2,1,winner_declared,7,Arcane Manipulators,Storm Warden,Quartermaster's Bastion,"Grand Cathedral, Breach Point, Bloodletting Altar",8.25,88.75
+41,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Relentless Assault,Ash Chancellor,Ossuary Keep,"Grand Cathedral, Breach Point, Martyr’s Square",9.25,92.0
+42,bad_vs_good,bad,good,Player 2,1,winner_declared,8,Relentless Assault,Ash Chancellor,War-Wrought Citadel,"Martyr’s Square, Grand Cathedral, Scorched Wastes",11.0,93.0
+43,bad_vs_good,bad,good,Player 2,1,winner_declared,5,Arcane Manipulators,Vanguard,Sanctum of the Fallen,"Arcane Nexus, Silent Chasm, Ironheart Forges",8.5,86.0
+44,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Arcane Manipulators,Storm Warden,Ossuary Keep,"Silent Chasm, Grand Cathedral, Ironheart Forges",7.75,86.5
+45,bad_vs_good,bad,good,Player 2,1,winner_declared,7,Relentless Assault,Arch-Hierarch,Ossuary Keep,"Hall of Mirrors, Bloodletting Altar, Grand Cathedral",13.75,95.75
+46,bad_vs_good,bad,good,Player 2,1,winner_declared,5,Relentless Assault,Storm Warden,Sanctum of the Fallen,"Scorched Wastes, Martyr’s Square, Grand Cathedral",23.5,73.25
+47,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Siege Masters,Grand Strategist,War-Wrought Citadel,"Bloodletting Altar, Hall of Mirrors, Ironheart Forges",10.0,107.0
+48,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Inspiring Defenders,Vanguard,Ossuary Keep,"Grand Cathedral, Bloodletting Altar, Arcane Nexus",9.5,91.0
+49,bad_vs_good,bad,good,Player 2,1,winner_declared,7,Siege Masters,Grand Strategist,Quartermaster's Bastion,"Martyr’s Square, Grand Cathedral, Bloodletting Altar",10.5,107.75
+50,bad_vs_good,bad,good,Player 2,1,winner_declared,5,Relentless Assault,Vanguard,Quartermaster's Bastion,"Grand Cathedral, Scorched Wastes, Breach Point",8.5,90.75
+51,bad_vs_good,bad,good,Player 2,1,winner_declared,5,Siege Masters,Storm Warden,High Command Spire,"Breach Point, Bloodletting Altar, Hall of Mirrors",7.0,88.25
+52,bad_vs_good,bad,good,Player 2,1,winner_declared,8,Sacrificial Cult,Arch-Hierarch,Quartermaster's Bastion,"Silent Chasm, Bloodletting Altar, Grand Cathedral",10.75,90.5
+53,bad_vs_good,bad,good,Player 2,1,winner_declared,7,Sacrificial Cult,Arch-Hierarch,High Command Spire,"Bloodletting Altar, Martyr’s Square, Scorched Wastes",22.25,79.25
+54,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Relentless Assault,Vanguard,Quartermaster's Bastion,"Martyr’s Square, Arcane Nexus, Hall of Mirrors",10.0,91.25
+55,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Arcane Manipulators,Vanguard,Sanctum of the Fallen,"Arcane Nexus, Bloodletting Altar, Grand Cathedral",9.25,87.25
+56,bad_vs_good,bad,good,Player 2,1,winner_declared,7,Siege Masters,Grand Strategist,Quartermaster's Bastion,"Hall of Mirrors, Bloodletting Altar, Ironheart Forges",8.5,106.0
+57,bad_vs_good,bad,good,Player 2,1,winner_declared,7,Relentless Assault,Grand Strategist,Ossuary Keep,"Grand Cathedral, Scorched Wastes, Ironheart Forges",9.5,107.25
+58,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Inspiring Defenders,Grand Strategist,War-Wrought Citadel,"Scorched Wastes, Hall of Mirrors, Ironheart Forges",11.75,106.25
+59,bad_vs_good,bad,good,Player 2,1,winner_declared,5,Relentless Assault,Vanguard,Quartermaster's Bastion,"Arcane Nexus, Scorched Wastes, Hall of Mirrors",8.5,92.75
+60,bad_vs_good,bad,good,Player 2,1,winner_declared,6,Siege Masters,Arch-Hierarch,War-Wrought Citadel,"Silent Chasm, Bloodletting Altar, Ironheart Forges",9.25,92.5
+61,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,413,Relentless Assault,Grand Strategist,Sanctum of the Fallen,"Breach Point, Scorched Wastes, Hall of Mirrors",573.25,579.75
+62,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,35,Sacrificial Cult,Arch-Hierarch,War-Wrought Citadel,"Martyr’s Square, Hall of Mirrors, Silent Chasm",38.5,118.0
+63,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,33,Sacrificial Cult,Grand Strategist,War-Wrought Citadel,"Martyr’s Square, Silent Chasm, Hall of Mirrors",66.5,148.75
+64,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,18,Arcane Manipulators,Grand Strategist,War-Wrought Citadel,"Breach Point, Grand Cathedral, Ironheart Forges",101.0,38.0
+65,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,68,Arcane Manipulators,Vanguard,War-Wrought Citadel,"Martyr’s Square, Hall of Mirrors, Arcane Nexus",24.5,104.25
+66,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,25,Arcane Manipulators,Arch-Hierarch,High Command Spire,"Grand Cathedral, Hall of Mirrors, Arcane Nexus",25.5,114.25
+67,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,752,Arcane Manipulators,Ash Chancellor,Quartermaster's Bastion,"Bloodletting Altar, Scorched Wastes, Martyr’s Square",267.5,210.0
+68,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,16,Siege Masters,Arch-Hierarch,High Command Spire,"Breach Point, Bloodletting Altar, Hall of Mirrors",11.75,114.25
+69,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,42,Inspiring Defenders,Arch-Hierarch,Sanctum of the Fallen,"Silent Chasm, Hall of Mirrors, Breach Point",68.0,152.25
+70,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,104,Inspiring Defenders,Storm Warden,High Command Spire,"Scorched Wastes, Bloodletting Altar, Ironheart Forges",28.0,120.75
+71,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,21,Arcane Manipulators,Ash Chancellor,War-Wrought Citadel,"Bloodletting Altar, Hall of Mirrors, Ironheart Forges",54.0,87.25
+72,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,1325,Arcane Manipulators,Vanguard,War-Wrought Citadel,"Arcane Nexus, Grand Cathedral, Bloodletting Altar",274.5,266.75
+73,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,448,Inspiring Defenders,Grand Strategist,Quartermaster's Bastion,"Silent Chasm, Hall of Mirrors, Bloodletting Altar",557.75,674.75
+74,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,124,Inspiring Defenders,Arch-Hierarch,Quartermaster's Bastion,"Arcane Nexus, Ironheart Forges, Hall of Mirrors",163.75,220.25
+75,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,22,Arcane Manipulators,Ash Chancellor,War-Wrought Citadel,"Martyr’s Square, Arcane Nexus, Silent Chasm",89.5,27.25
+76,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,78,Siege Masters,Vanguard,War-Wrought Citadel,"Breach Point, Bloodletting Altar, Scorched Wastes",103.75,28.5
+77,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,85,Siege Masters,Storm Warden,Quartermaster's Bastion,"Ironheart Forges, Hall of Mirrors, Breach Point",53.75,88.0
+78,mediocre_vs_good,mediocre,good,Player 1,0,winner_declared,391,Relentless Assault,Storm Warden,High Command Spire,"Bloodletting Altar, Arcane Nexus, Ironheart Forges",162.0,65.5
+79,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,118,Arcane Manipulators,Ash Chancellor,Ossuary Keep,"Breach Point, Martyr’s Square, Grand Cathedral",75.5,118.0
+80,mediocre_vs_good,mediocre,good,Player 2,1,winner_declared,121,Siege Masters,Arch-Hierarch,High Command Spire,"Scorched Wastes, Hall of Mirrors, Breach Point",121.5,188.75
+81,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,37,Sacrificial Cult,Vanguard,Ossuary Keep,"Arcane Nexus, Silent Chasm, Scorched Wastes",38.0,91.0
+82,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,421,Relentless Assault,Grand Strategist,Quartermaster's Bastion,"Hall of Mirrors, Arcane Nexus, Grand Cathedral",608.75,550.25
+83,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,141,Relentless Assault,Arch-Hierarch,High Command Spire,"Arcane Nexus, Breach Point, Scorched Wastes",165.5,34.0
+84,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,79,Siege Masters,Vanguard,High Command Spire,"Scorched Wastes, Hall of Mirrors, Bloodletting Altar",99.5,54.0
+85,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,60,Sacrificial Cult,Storm Warden,War-Wrought Citadel,"Hall of Mirrors, Breach Point, Scorched Wastes",120.5,27.5
+86,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,641,Inspiring Defenders,Grand Strategist,Sanctum of the Fallen,"Scorched Wastes, Hall of Mirrors, Ironheart Forges",825.75,860.0
+87,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,30,Inspiring Defenders,Ash Chancellor,War-Wrought Citadel,"Grand Cathedral, Scorched Wastes, Breach Point",125.75,37.0
+88,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,49,Arcane Manipulators,Vanguard,Ossuary Keep,"Bloodletting Altar, Hall of Mirrors, Scorched Wastes",125.5,15.0
+89,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,166,Sacrificial Cult,Ash Chancellor,War-Wrought Citadel,"Hall of Mirrors, Grand Cathedral, Breach Point",82.75,154.75
+90,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,30,Sacrificial Cult,Arch-Hierarch,Ossuary Keep,"Silent Chasm, Ironheart Forges, Martyr’s Square",107.25,26.75
+91,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,11,Siege Masters,Grand Strategist,Ossuary Keep,"Bloodletting Altar, Silent Chasm, Scorched Wastes",26.25,88.0
+92,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,125,Inspiring Defenders,Arch-Hierarch,High Command Spire,"Bloodletting Altar, Hall of Mirrors, Silent Chasm",213.25,216.5
+93,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,764,Siege Masters,Vanguard,Sanctum of the Fallen,"Silent Chasm, Ironheart Forges, Hall of Mirrors",108.25,163.75
+94,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,59,Sacrificial Cult,Vanguard,Sanctum of the Fallen,"Arcane Nexus, Scorched Wastes, Breach Point",29.0,115.75
+95,mediocre_vs_mediocre,mediocre,mediocre,Player 2,1,winner_declared,6,Sacrificial Cult,Grand Strategist,War-Wrought Citadel,"Arcane Nexus, Grand Cathedral, Martyr’s Square",36.0,77.0
+96,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,44,Arcane Manipulators,Arch-Hierarch,War-Wrought Citadel,"Scorched Wastes, Silent Chasm, Breach Point",73.0,43.75
+97,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,78,Inspiring Defenders,Vanguard,Quartermaster's Bastion,"Scorched Wastes, Arcane Nexus, Ironheart Forges",133.75,23.0
+98,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,48,Siege Masters,Vanguard,Ossuary Keep,"Breach Point, Silent Chasm, Arcane Nexus",112.0,22.75
+99,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,61,Sacrificial Cult,Arch-Hierarch,High Command Spire,"Scorched Wastes, Silent Chasm, Bloodletting Altar",114.25,55.0
+100,mediocre_vs_mediocre,mediocre,mediocre,Player 1,0,winner_declared,194,Siege Masters,Arch-Hierarch,Sanctum of the Fallen,"Breach Point, Grand Cathedral, Bloodletting Altar",254.5,130.75
+101,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Storm Warden,Quartermaster's Bastion,"Scorched Wastes, Bloodletting Altar, Arcane Nexus",415.25,181.25
+102,good_vs_good,good,good,Player 1,0,winner_declared,156,Relentless Assault,Vanguard,War-Wrought Citadel,"Silent Chasm, Martyr’s Square, Bloodletting Altar",117.25,27.5
+103,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Siege Masters,Arch-Hierarch,War-Wrought Citadel,"Arcane Nexus, Scorched Wastes, Hall of Mirrors",2126.75,1848.75
+104,good_vs_good,good,good,Player 2,1,winner_declared,103,Sacrificial Cult,Grand Strategist,High Command Spire,"Arcane Nexus, Hall of Mirrors, Bloodletting Altar",170.25,237.75
+105,good_vs_good,good,good,Player 1,0,winner_declared,1925,Arcane Manipulators,Storm Warden,Ossuary Keep,"Ironheart Forges, Arcane Nexus, Bloodletting Altar",365.0,343.5
+106,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Arcane Manipulators,Arch-Hierarch,High Command Spire,"Grand Cathedral, Arcane Nexus, Scorched Wastes",1193.5,400.75
+107,good_vs_good,good,good,Player 2,1,winner_declared,1195,Siege Masters,Ash Chancellor,High Command Spire,"Scorched Wastes, Martyr’s Square, Breach Point",325.5,354.75
+108,good_vs_good,good,good,Player 1,0,winner_declared,97,Inspiring Defenders,Ash Chancellor,Ossuary Keep,"Silent Chasm, Martyr’s Square, Hall of Mirrors",128.25,84.5
+109,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Relentless Assault,Ash Chancellor,High Command Spire,"Grand Cathedral, Ironheart Forges, Breach Point",488.0,450.75
+110,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Vanguard,War-Wrought Citadel,"Hall of Mirrors, Silent Chasm, Ironheart Forges",181.75,180.5
+111,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Storm Warden,Quartermaster's Bastion,"Breach Point, Ironheart Forges, Scorched Wastes",198.0,192.25
+112,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Inspiring Defenders,Grand Strategist,Quartermaster's Bastion,"Silent Chasm, Scorched Wastes, Grand Cathedral",2651.75,2546.25
+113,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Arch-Hierarch,Sanctum of the Fallen,"Silent Chasm, Bloodletting Altar, Breach Point",1430.0,612.0
+114,good_vs_good,good,good,Player 1,0,winner_declared,873,Inspiring Defenders,Ash Chancellor,Ossuary Keep,"Grand Cathedral, Ironheart Forges, Scorched Wastes",299.75,265.25
+115,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Ash Chancellor,War-Wrought Citadel,"Breach Point, Martyr’s Square, Scorched Wastes",539.0,428.75
+116,good_vs_good,good,good,Draw,,turn_limit_draw,2001,Sacrificial Cult,Grand Strategist,Sanctum of the Fallen,"Ironheart Forges, Silent Chasm, Arcane Nexus",2492.5,2653.25
+117,good_vs_good,good,good,Player 1,0,winner_declared,277,Arcane Manipulators,Vanguard,High Command Spire,"Ironheart Forges, Scorched Wastes, Bloodletting Altar",127.25,56.0
+118,good_vs_good,good,good,Player 2,1,winner_declared,1969,Arcane Manipulators,Storm Warden,Sanctum of the Fallen,"Scorched Wastes, Ironheart Forges, Breach Point",284.25,315.75
+119,good_vs_good,good,good,Player 2,1,winner_declared,1529,Siege Masters,Arch-Hierarch,Ossuary Keep,"Breach Point, Hall of Mirrors, Grand Cathedral",1884.0,1929.0
+120,good_vs_good,good,good,Player 2,1,winner_declared,1164,Arcane Manipulators,Grand Strategist,War-Wrought Citadel,"Bloodletting Altar, Breach Point, Silent Chasm",1513.75,1496.25

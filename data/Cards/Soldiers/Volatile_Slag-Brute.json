@@ -1,0 +1,9 @@
+{
+	"name": "Volatile Slag-Brute",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 4, "materia": 1},
+	"stats": {"might": 4, "will": 5},
+	"ability": "Corrosive Splatter",
+	"description": "If this Unit is Felled during the Siege Phase, 1 remaining opposing Front Line Unit permanently loses -1 Might."
+}

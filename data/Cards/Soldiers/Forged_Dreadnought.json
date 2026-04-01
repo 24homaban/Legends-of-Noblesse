@@ -1,0 +1,9 @@
+{
+	"name": "Forged Dreadnought",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 5, "ore": 1},
+	"stats": {"might": 7, "will": 4},
+	"ability": "Reckless Swing",
+	"description": "When you assign this Unit to a Battalion during Preparations, you may pay an additional 1 Ore. If you do, it gains +2 Might and -2 Will during the Siege Phase this turn."
+}

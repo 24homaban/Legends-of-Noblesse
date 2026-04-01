@@ -1,0 +1,9 @@
+{
+	"name": "Conscripted Militia",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 1},
+	"stats": {"might": 1, "will": 2},
+	"ability": "Expendable",
+	"description": "When this Unit is Felled during the Siege Phase, gain 1 Ration during your next Replenish phase."
+}

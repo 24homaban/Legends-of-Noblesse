@@ -1,0 +1,6 @@
+{
+	"name": "Bloodletting Altar",
+	"type": "Battlefield",
+	"ability": "Macabre Harvest",
+	"description": "While you Control this Battlefield, whenever one of your Units is Felled on any Battlefield, you generate 1 Sacrifice."
+}

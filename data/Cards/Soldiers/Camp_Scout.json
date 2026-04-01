@@ -1,0 +1,9 @@
+{
+	"name": "Camp Scout",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 1},
+	"stats": {"might": 1, "will": 2},
+	"ability": "Foraging Intel",
+	"description": "If this Unit survives Siege combat, gain 1 Ration during Field Cleanup."
+}

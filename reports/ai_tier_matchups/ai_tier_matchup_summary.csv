@@ -1,0 +1,7 @@
+matchup,p1_ai,p2_ai,games,p1_wins,p2_wins,draws,non_draw_games,p1_decisive_win_rate_pct,p2_decisive_win_rate_pct,p1_point_rate_pct,p2_point_rate_pct,draw_rate_pct,avg_turns
+bad vs bad,bad,bad,250,8,242,0,250,3.2,96.8,3.2,96.8,0.0,51.0
+bad vs mediocre,bad,mediocre,250,0,250,0,250,0.0,100.0,0.0,100.0,0.0,5.96
+bad vs good,bad,good,250,0,250,0,250,0.0,100.0,0.0,100.0,0.0,6.09
+mediocre vs good,mediocre,good,250,37,213,0,250,14.8,85.2,14.8,85.2,0.0,46.23
+mediocre vs mediocre,mediocre,mediocre,250,68,182,0,250,27.2,72.8,27.2,72.8,0.0,39.31
+good vs good,good,good,250,27,223,0,250,10.8,89.2,10.8,89.2,0.0,50.47

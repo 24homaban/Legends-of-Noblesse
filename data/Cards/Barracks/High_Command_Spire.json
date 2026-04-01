@@ -1,0 +1,7 @@
+{
+	"name": "High Command Spire",
+	"type": "Barracks",
+	"ability": "Supply Command",
+	"description": "During your Replenish Phase, gain 1 additional Ration.",
+	"rations": 5
+}

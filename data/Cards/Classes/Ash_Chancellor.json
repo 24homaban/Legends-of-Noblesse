@@ -1,0 +1,23 @@
+{
+	"name": "Ash Chancellor",
+	"type": "Class",
+	"xp": "Ledger of Cinders",
+	"xp_description": "Gain 1 XP whenever one or more of your Units are Felled in combat.",
+	"levels": [
+		{
+			"level": 1,
+			"name": "Cinder Tithe",
+			"description": "Once per Siege Phase, when your Units are Felled, gain 1 Sacrifice."
+		},
+		{
+			"level": 3,
+			"name": "Ashen Recall",
+			"description": "Once per Preparations Phase, pay 1 Sacrifice to choose a Unit from your Grave and return it to your hand."
+		},
+		{
+			"level": 6,
+			"name": "Pyre Decree",
+			"description": "Once per Siege Phase, pay 2 Sacrifice to give your Front Line Units +2 Might until end of phase."
+		}
+	]
+}

@@ -1,0 +1,6 @@
+{
+	"name": "Scorched Wastes",
+	"type": "Battlefield",
+	"ability": "Spoils of War",
+	"description": "While you Control this Battlefield, whenever one of your Battalions successfully deals Overflow damage to an opposing Back Line, gain 1 Ration."
+}

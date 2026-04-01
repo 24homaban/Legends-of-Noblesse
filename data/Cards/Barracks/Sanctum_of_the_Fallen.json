@@ -1,0 +1,7 @@
+{
+	"name": "Sanctum of the Fallen",
+	"type": "Barracks",
+	"ability": "Desperate Defense",
+	"description": "Whenever one of your Units is Felled during a Siege on a Battlefield in your Back Row, you may immediately draw 1 card.",
+	"rations": 6
+}

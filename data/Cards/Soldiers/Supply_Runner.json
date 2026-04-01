@@ -1,0 +1,9 @@
+{
+	"name": "Supply Runner",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 3},
+	"stats": {"might": 1, "will": 3},
+	"ability": "Field Provision",
+	"description": "When assigned during Preparations, gain 1 Ration next Replenish."
+}

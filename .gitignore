@@ -1,0 +1,21 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Local temp/tooling
+.tmp/
+.tools/
+
+# Build artifacts
+build/
+dist/
+*.spec
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.swp

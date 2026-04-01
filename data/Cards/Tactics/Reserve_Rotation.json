@@ -1,0 +1,7 @@
+﻿{
+  "name": "Reserve Rotation",
+  "type": "Tactic",
+  "cost": {"rations": 3},
+  "ability": "Line Shift",
+  "description": "Preparations: Return one battalion card to hand, then assign one unit from hand to that battalion."
+}

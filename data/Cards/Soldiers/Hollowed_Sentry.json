@@ -1,0 +1,9 @@
+{
+	"name": "Hollowed Sentry",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 4, "faith": 1},
+	"stats": {"might": 3, "will": 6},
+	"ability": "Spectral Guard",
+	"description": "While this Unit is assigned to a Battlefield you Control, its Will is treated as 8 instead of 6."
+}

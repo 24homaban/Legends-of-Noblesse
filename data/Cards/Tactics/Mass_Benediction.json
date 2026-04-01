@@ -1,0 +1,7 @@
+﻿{
+  "name": "Mass Benediction",
+  "type": "Tactic",
+  "cost": {"faith": 1},
+  "ability": "Sanctified Chorus",
+  "description": "Preparations: All your back-line units gain +1 Will this turn."
+}

@@ -1,0 +1,9 @@
+{
+	"name": "Spire Mind-Bender",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 4, "magium": 1},
+	"stats": {"might": 2, "will": 3},
+	"ability": "Confusion",
+	"description": "When this Unit is revealed during the Siege Phase, you may force the opponent to swap the position of one of their Front Line Units and one of their Back Line Units in the opposing Battalion before damage is calculated."
+}

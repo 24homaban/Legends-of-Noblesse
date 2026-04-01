@@ -1,0 +1,7 @@
+﻿{
+  "name": "Supply Cache",
+  "type": "Tactic",
+  "cost": {"rations": 1},
+  "ability": "Delayed Provisions",
+  "description": "Preparations: Set a cache. Gain 2 Rations at the start of your Replenish phase two rounds later."
+}

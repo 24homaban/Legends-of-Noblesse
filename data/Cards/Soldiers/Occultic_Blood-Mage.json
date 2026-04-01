@@ -1,0 +1,9 @@
+{
+	"name": "Occultic Blood-Mage",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 3, "sacrifice": 1},
+	"stats": {"might": 3, "will": 3},
+	"ability": "Siphon Life",
+	"description": "Whenever a Front Line Unit is this same Battalion is Felled during the Siege Phase, you may deal 2 direct Overflow damage to the opposing Battalion’s Back Line."
+}

@@ -1,0 +1,7 @@
+﻿{
+  "name": "Entrench",
+  "type": "Tactic",
+  "cost": {"ore": 1},
+  "ability": "Fortification",
+  "description": "Preparations: Choose a battalion. It gains +2 total Will this turn."
+}

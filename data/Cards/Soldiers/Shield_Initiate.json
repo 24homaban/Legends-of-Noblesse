@@ -1,0 +1,9 @@
+{
+	"name": "Shield Initiate",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 3},
+	"stats": {"might": 2, "will": 4},
+	"ability": "Brace",
+	"description": "This unit takes 1 less incoming damage the first time it is damaged each siege."
+}

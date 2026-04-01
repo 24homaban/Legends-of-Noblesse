@@ -1,0 +1,7 @@
+{
+	"name": "Ossuary Keep",
+	"type": "Barracks",
+	"ability": "Crypt Reserves",
+	"description": "Once per Preparations Phase, you may pay 1 Faith to choose one Unit from your Grave and return it to your hand.",
+	"rations": 4
+}

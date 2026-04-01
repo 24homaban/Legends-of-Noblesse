@@ -1,0 +1,122 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2370 >>
+stream
+BT
+/F1 11 Tf
+54 738 Td
+(Legends of Noblesse AI Tier Matchup Report) Tj
+0 -14 Td
+(Date: March 31, 2026) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Introduction) Tj
+0 -14 Td
+(This report evaluates balance across bad/mediocre/good AI tiers.) Tj
+0 -14 Td
+(Simulation uses legal rules only, 20 games per matchup, and no overtime forcing.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Rules) Tj
+0 -14 Td
+(- Phase order: Replenish, Draw, Preparations, Siege, Field Cleanup.) Tj
+0 -14 Td
+(- Decisive result requires in-engine barracks capture.) Tj
+0 -14 Td
+(- Turn cap is 2000; unresolved games are recorded as draws.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Results \(Overall\)) Tj
+0 -14 Td
+(- Simulated games: 120) Tj
+0 -14 Td
+(- Non-draw games: 90) Tj
+0 -14 Td
+(- Draws: 30 \(25.00%\)) Tj
+0 -14 Td
+(- Player 1 decisive win rate: 26.67%) Tj
+0 -14 Td
+(- Player 2 decisive win rate: 73.33%) Tj
+0 -14 Td
+(- Player 1 point rate \(draw=0.5\): 32.50%) Tj
+0 -14 Td
+(- Player 2 point rate \(draw=0.5\): 67.50%) Tj
+0 -14 Td
+(- Average game length: 640.42 turns) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Matchup Results) Tj
+0 -14 Td
+(- bad vs bad: games=20, p1_wins=0, p2_wins=0, p1_win%=0.0, p2_win%=0.0) Tj
+0 -14 Td
+(- bad vs mediocre: games=20, p1_wins=0, p2_wins=20, p1_win%=0.0, p2_win%=100.0) Tj
+0 -14 Td
+(- bad vs good: games=20, p1_wins=0, p2_wins=20, p1_win%=0.0, p2_win%=100.0) Tj
+0 -14 Td
+(- mediocre vs good: games=20, p1_wins=6, p2_wins=14, p1_win%=30.0, p2_win%=70.0) Tj
+0 -14 Td
+(- mediocre vs mediocre: games=20, p1_wins=13, p2_wins=7, p1_win%=65.0, p2_win%=35.0) Tj
+0 -14 Td
+(- good vs good: games=20, p1_wins=5, p2_wins=5, p1_win%=50.0, p2_win%=50.0) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Overall Tier Strength) Tj
+0 -14 Td
+(- good: appearances=80, wins=44, losses=16, win%=73.33) Tj
+0 -14 Td
+(- mediocre: appearances=80, wins=46, losses=34, win%=57.5) Tj
+0 -14 Td
+(- bad: appearances=80, wins=0, losses=40, win%=0.0) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Overtime Order-Bias Audit \(Legacy Forced-Overtime Run\)) Tj
+0 -14 Td
+(- Overtime starts after turn 50; audited winners=1500) Tj
+0 -14 Td
+(- Overtime-window winners=832 \(55.47%\)) Tj
+0 -14 Td
+(- Overtime winners by side: P1=71, P2=761 \(P2 share 91.47%\)) Tj
+0 -14 Td
+(- Turn 51 winners=821; P2 took 750 \(91.35%\)) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Conclusion) Tj
+0 -14 Td
+(The report includes the full assignment flow: introduction, rules, data-driven results, and conclusion.) Tj
+0 -14 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000317 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2739
+%%EOF

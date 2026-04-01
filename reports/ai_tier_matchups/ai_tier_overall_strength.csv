@@ -1,0 +1,4 @@
+ai,appearances,wins,losses,draws,non_draw_games,decisive_win_rate_pct,point_rate_pct
+good,1000,713,287,0,1000,71.3,71.3
+mediocre,1000,537,463,0,1000,53.7,53.7
+bad,1000,250,750,0,1000,25.0,25.0

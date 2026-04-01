@@ -1,0 +1,9 @@
+{
+	"name": "Alchemical Chirurgeon",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 2},
+	"stats": {"might": 1, "will": 3},
+	"ability": "Strategic Role",
+	"description": "During your Preparations Phase, if this Unit survived the previous Siege, you may pay 1 Materia. If you do, choose one Unit from your Grave and return it to your hand."
+}

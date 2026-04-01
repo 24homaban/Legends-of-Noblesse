@@ -1,0 +1,23 @@
+{
+	"name": "Storm Warden",
+	"type": "Class",
+	"xp": "Tempest Pressure",
+	"xp_description": "Gain 1 XP each time your Battalion's damage overflows into an opposing Back Line during the Siege Phase.",
+	"levels": [
+		{
+			"level": 1,
+			"name": "Stormline Drill",
+			"description": "During Siege, your Front Line Units gain +1 Might."
+		},
+		{
+			"level": 3,
+			"name": "Static Surge",
+			"description": "Once per Siege Phase, when you cause overflow, gain 1 Magium."
+		},
+		{
+			"level": 6,
+			"name": "Eye of the Storm",
+			"description": "Once per Siege Phase, pay 1 Magium to give one of your Front Line Units +2 Might until end of phase."
+		}
+	]
+}

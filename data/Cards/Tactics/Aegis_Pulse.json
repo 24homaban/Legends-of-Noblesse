@@ -1,0 +1,7 @@
+﻿{
+  "name": "Aegis Pulse",
+  "type": "Tactic",
+  "cost": {"magium": 1},
+  "ability": "Arcane Bulwark",
+  "description": "Preparations: Choose one of your units. It gains +2 Will this turn."
+}

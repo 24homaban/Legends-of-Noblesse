@@ -1,0 +1,7 @@
+﻿{
+  "name": "Sabotage Lines",
+  "type": "Tactic",
+  "cost": {"ore": 1},
+  "ability": "Disruptive Strike",
+  "description": "Preparations: Choose an enemy front-line unit. It gets -1 Might this turn."
+}

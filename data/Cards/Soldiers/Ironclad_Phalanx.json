@@ -1,0 +1,9 @@
+{
+	"name": "Ironclad Phalanx",
+	"type": "Unit",
+	"line": "Front",
+	"cost": {"rations": 3},
+	"stats": {"might": 2, "will": 5},
+	"ability": "Shield Wall",
+	"description": "When this Unit is revealed during the Siege Phase, if you have a Back Line Unit assigned to the same Battalion, the Ironclad Phalanx gains +2 Will until the end of the Phase."
+}

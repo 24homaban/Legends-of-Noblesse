@@ -1,0 +1,7 @@
+﻿{
+  "name": "Rite of Ash",
+  "type": "Tactic",
+  "cost": {"sacrifice": 1},
+  "ability": "Funerary Recall",
+  "description": "Preparations: Choose a unit in your grave and return it to your hand."
+}

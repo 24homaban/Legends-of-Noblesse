@@ -1,0 +1,6 @@
+{
+	"name": "Silent Chasm",
+	"type": "Battlefield",
+	"ability": "Profitable Standoff",
+	"description": "If both players battle here during Siege and the current controller still controls it afterward, that controller may next draw phase look at the top two cards of their deck, reorder them, then draw."
+}

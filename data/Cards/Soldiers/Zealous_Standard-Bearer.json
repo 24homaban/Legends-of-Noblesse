@@ -1,0 +1,9 @@
+{
+	"name": "Zealous Standard-Bearer",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 3, "faith": 1},
+	"stats": {"might": 2, "will": 4},
+	"ability": "Rallying Cry",
+	"description": "As long as this Unit is assigned to a Battalion and is face-up, all Front Line Units in this Battalion gain +1 Might and Will."
+}

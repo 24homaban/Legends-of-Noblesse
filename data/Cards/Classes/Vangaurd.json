@@ -1,0 +1,23 @@
+{
+	"name": "Vanguard",
+	"type": "Class",
+	"xp": "Shatter The Ranks",
+	"xp_description": "Gain 1 XP every time your Battalion’s damage successfully overflows into an opposing Back Line during the Siege Phase.",
+	"levels": [
+		{
+			"level": 1,
+			"name": "Marching Orders",
+			"description": "Siege passive: Your Front Line units gain +1 Might while attacking a Battlefield you do not control."
+		},
+		{
+			"level": 3,
+			"name": "Relentless Push",
+			"description": "Once per Siege phase, you may pay 1 Ore or 1 Materia. Choose one of your Front Line Units; it gains +2 Might until the end of the phase."
+		},
+		{
+			"level": 6,
+			"name": "Total Conquest",
+			"description": "Once per game, when you successfully claim a Battlefield, you may immediately force your opponent to Fell one of their Units that survived on a different Battlefield before it can return to their Barracks."
+		}
+	]
+}

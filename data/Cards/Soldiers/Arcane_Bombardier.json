@@ -1,0 +1,9 @@
+{
+	"name": "Arcane Bombardier",
+	"type": "Unit",
+	"line": "Back",
+	"cost": {"rations": 4, "magium": 1},
+	"stats": {"might": 6, "will": 2},
+	"ability": "Devastating Payload",
+	"description": "If this Battalion successfully deals Overflow damage to the opponent’s Back Line, you may immediately draw 1 card."
+}
