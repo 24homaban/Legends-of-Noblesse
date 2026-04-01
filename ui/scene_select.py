@@ -21,6 +21,7 @@ from .renderers import (
     wrap_text,
 )
 from .scene_base import SceneBase
+from .tutorial import TutorialCard, draw_tutorial_popup
 
 
 class SelectScene(SceneBase):
@@ -59,11 +60,88 @@ class SelectScene(SceneBase):
 
         self.click_map: list[tuple[pygame.Rect, Callable[[], None]]] = []
         self.set_status("Configure Player 1. Step 1/4: Deck.")
+        self.tutorial_title_font = pygame.font.SysFont("cambria", 30, bold=True)
+        self.tutorial_popup: TutorialCard | None = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
+        self._refresh_tutorial_popup()
 
     def _register_click(self, rect: pygame.Rect, callback: Callable[[], None]) -> None:
         self.click_map.append((rect, callback))
 
+    def _tutorial_active(self) -> bool:
+        return self.tutorial_popup is not None
+
+    def _tutorial_progress(self) -> tuple[int, int]:
+        if self.tutorial_popup is None:
+            return (1, 2)
+        if self.tutorial_popup.key == "setup_overview":
+            return (1, 2)
+        return (2, 2)
+
+    def _refresh_tutorial_popup(self) -> None:
+        if self.tutorial_popup is not None or not self.app.tutorial_enabled:
+            return
+        if self.stage == "select" and self.app.tutorial_pending("setup_overview"):
+            self.tutorial_popup = TutorialCard(
+                key="setup_overview",
+                title="Setup Walkthrough",
+                lines=(
+                    "For each player, finish 4 setup steps: Deck, Class, Barracks, and 3 Battlefields.",
+                    "Press Enter for next step, Backspace for previous, or use the side panel buttons.",
+                    "Battlefields must be exactly 3 before you can save a player.",
+                    "After both players are saved, you move into battlefield placement.",
+                ),
+                continue_label="Continue",
+            )
+            return
+        if self.stage == "placement" and self.app.tutorial_pending("placement_overview"):
+            self.tutorial_popup = TutorialCard(
+                key="placement_overview",
+                title="Placement Walkthrough",
+                lines=(
+                    "Before combat, players place the 6 battlefield cards onto the board.",
+                    "Current player: select one remaining battlefield on the left, then click an empty slot.",
+                    "Players alternate until all 6 slots are filled.",
+                    "After placement, the match begins and your first turn starts in Draw phase.",
+                ),
+                continue_label="Begin Match",
+            )
+
+    def _advance_tutorial_popup(self) -> None:
+        if self.tutorial_popup is None:
+            return
+        self.app.mark_tutorial_seen(self.tutorial_popup.key)
+        self.tutorial_popup = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
+        self._refresh_tutorial_popup()
+
+    def _skip_tutorial_popup(self) -> None:
+        self.app.skip_all_tutorials()
+        self.tutorial_popup = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
+
     def handle_event(self, event: pygame.event.Event) -> None:
+        if self._tutorial_active():
+            if event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    self._advance_tutorial_popup()
+                    return
+                if event.key == pygame.K_ESCAPE:
+                    self._skip_tutorial_popup()
+                    return
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                if self.tutorial_next_rect.collidepoint(event.pos):
+                    self._advance_tutorial_popup()
+                    return
+                if self.tutorial_skip_rect.collidepoint(event.pos):
+                    self._skip_tutorial_popup()
+                    return
+                return
+            if event.type == pygame.MOUSEWHEEL:
+                return
         if event.type == pygame.KEYDOWN:
             if self.stage == "select" and event.key == pygame.K_RETURN:
                 self._next_step()
@@ -88,6 +166,7 @@ class SelectScene(SceneBase):
 
     def update(self, dt: float) -> None:
         self.time += dt
+        self._refresh_tutorial_popup()
 
     def draw(self, surface: pygame.Surface) -> None:
         self.click_map = []
@@ -110,6 +189,19 @@ class SelectScene(SceneBase):
             686,
             ACCENT,
         )
+        if self._tutorial_active() and self.tutorial_popup is not None:
+            step_index, total_steps = self._tutorial_progress()
+            popup_rects = draw_tutorial_popup(
+                surface,
+                title_font=self.tutorial_title_font,
+                body_font=self.font_body,
+                small_font=self.font_small,
+                card=self.tutorial_popup,
+                step_index=step_index,
+                total_steps=total_steps,
+            )
+            self.tutorial_next_rect = popup_rects["next"]
+            self.tutorial_skip_rect = popup_rects["skip"]
 
     def _draw_option_item(
         self,

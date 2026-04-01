@@ -30,6 +30,7 @@ from .renderers import (
     wrap_text,
 )
 from .scene_base import SceneBase
+from .tutorial import TutorialCard, draw_tutorial_popup
 
 
 class GameScene(SceneBase):
@@ -67,6 +68,10 @@ class GameScene(SceneBase):
         self.hand_card_height = 68
         self.hovered_card = None
         self.hovered_card_hidden_preview = False
+        self.tutorial_title_font = pygame.font.SysFont("cambria", 30, bold=True)
+        self.tutorial_popup: TutorialCard | None = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
 
         self.buttons: list[Button] = []
         self.click_map: list[tuple[pygame.Rect, Callable[[], None]]] = []
@@ -131,6 +136,7 @@ class GameScene(SceneBase):
                 battalion_cards = self._active_player().battalions[bidx].cards
                 if cidx < 0 or cidx >= len(battalion_cards):
                     self.selected_unit_card = None
+        self._refresh_tutorial_popup()
 
     def _recompute_hand_layout(self) -> None:
         self.hand_card_height = max(24, self.hand_panel_rect.height - 30)
@@ -158,12 +164,33 @@ class GameScene(SceneBase):
         )
         stack_popup_active = self.stack_popup is not None
         siege_report_popup_active = self.siege_report_popup is not None
+        tutorial_popup_active = self.tutorial_popup is not None
         popup_active = (
             deploy_popup_active
             or profitable_standoff_popup_active
             or stack_popup_active
             or siege_report_popup_active
+            or tutorial_popup_active
         )
+        if tutorial_popup_active:
+            if event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    self._advance_tutorial_popup()
+                    return
+                if event.key == pygame.K_ESCAPE:
+                    self._skip_tutorial_popup()
+                    return
+                return
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                if self.tutorial_next_rect.collidepoint(event.pos):
+                    self._advance_tutorial_popup()
+                    return
+                if self.tutorial_skip_rect.collidepoint(event.pos):
+                    self._skip_tutorial_popup()
+                    return
+                return
+            if event.type == pygame.MOUSEWHEEL:
+                return
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE and stack_popup_active:
                 self._close_stack_popup()
@@ -518,6 +545,98 @@ class GameScene(SceneBase):
     def _active_player(self):
         return self.game.players[self._active_player_index()]
 
+    def _has_existing_popup(self) -> bool:
+        deploy_popup_active = (
+            self.game.phase == "siege"
+            and self.game.pending_first_deployer_choice is not None
+            and self.game.pending_siege_roll is not None
+        )
+        profitable_standoff_popup_active = (
+            self.game.phase == "draw" and self.game.pending_profitable_standoff_draw_player is not None
+        )
+        return (
+            deploy_popup_active
+            or profitable_standoff_popup_active
+            or self.stack_popup is not None
+            or self.siege_report_popup is not None
+        )
+
+    def _tutorial_progress(self) -> tuple[int, int]:
+        if self.tutorial_popup is None:
+            return (1, 3)
+        if self.tutorial_popup.key == "game_draw_overview":
+            return (1, 3)
+        if self.tutorial_popup.key == "game_preparations_overview":
+            return (2, 3)
+        return (3, 3)
+
+    def _refresh_tutorial_popup(self) -> None:
+        if self.tutorial_popup is not None or not self.app.tutorial_enabled:
+            return
+        if self._has_existing_popup():
+            return
+        if self.game.turn != 1:
+            return
+        if self.game.phase == "draw" and self.app.tutorial_pending("game_draw_overview"):
+            self.tutorial_popup = TutorialCard(
+                key="game_draw_overview",
+                title="Draw Phase Walkthrough",
+                lines=(
+                    "Each turn starts here. Players draw and can use draw-phase actions.",
+                    "Only the active player can act. The header shows whose turn it is.",
+                    "Use the hand and action panels to plan resources and set up the next phase.",
+                    "When done, press Ready so both players can move into Preparations.",
+                ),
+                continue_label="Next Tip",
+            )
+            return
+        if self.game.phase == "preparations" and self.app.tutorial_pending("game_preparations_overview"):
+            self.tutorial_popup = TutorialCard(
+                key="game_preparations_overview",
+                title="Preparations Walkthrough",
+                lines=(
+                    "Build battalions here. Click a Unit in hand, then click Battalion 1 or 2 to assign it.",
+                    "Barracks units can also be moved into battalions with the action buttons.",
+                    "For tactic cards, press Cast Non-Unit and then pick any required target card.",
+                    "After both players are ready, the game advances to Siege.",
+                ),
+                continue_label="Next Tip",
+            )
+            return
+        if (
+            self.game.phase == "siege"
+            and self.game.pending_first_deployer_choice is None
+            and self.app.tutorial_pending("game_siege_overview")
+        ):
+            self.tutorial_popup = TutorialCard(
+                key="game_siege_overview",
+                title="Siege To Cleanup Walkthrough",
+                lines=(
+                    "In Siege, deploy each non-empty battalion once to a legal slot or barracks target.",
+                    "Select Battalion 1 or 2, click a highlighted target, and repeat until all deployments are set.",
+                    "Combat resolves automatically, battlefield control may change, then Field Cleanup runs.",
+                    "That completes the turn loop. Next turn starts back at Draw.",
+                ),
+                continue_label="Finish Guide",
+            )
+
+    def _advance_tutorial_popup(self) -> None:
+        if self.tutorial_popup is None:
+            return
+        self.app.mark_tutorial_seen(self.tutorial_popup.key)
+        self.tutorial_popup = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
+        self.set_status("Tutorial tip completed.")
+        self._refresh_tutorial_popup()
+
+    def _skip_tutorial_popup(self) -> None:
+        self.app.skip_all_tutorials()
+        self.tutorial_popup = None
+        self.tutorial_next_rect = pygame.Rect(0, 0, 0, 0)
+        self.tutorial_skip_rect = pygame.Rect(0, 0, 0, 0)
+        self.set_status("Tutorial guide skipped.")
+
     # ------------------------------------------------------------------ #
     # Button actions
     # ------------------------------------------------------------------ #
@@ -803,7 +922,12 @@ class GameScene(SceneBase):
         pending_roll = game.pending_siege_roll
         deploy_popup_active = phase == "siege" and pending_choice and pending_roll is not None
         standoff_popup_active = phase == "draw" and game.pending_profitable_standoff_draw_player is not None
-        popup_active = deploy_popup_active or standoff_popup_active or self.siege_report_popup is not None
+        popup_active = (
+            deploy_popup_active
+            or standoff_popup_active
+            or self.siege_report_popup is not None
+            or self.tutorial_popup is not None
+        )
         can_advance_siege = phase == "siege" and game._all_nonempty_battalions_deployed() and game.winner is None
         battalion_1 = player.battalions[0]
         battalion_2 = player.battalions[1]
@@ -1429,6 +1553,7 @@ class GameScene(SceneBase):
         self._draw_profitable_standoff_popup(surface)
         self._draw_deploy_roll_popup(surface)
         self._draw_siege_report_popup(surface)
+        self._draw_tutorial_popup(surface)
 
     def _draw_header(self, surface: pygame.Surface, rect: pygame.Rect) -> None:
         draw_panel(surface, rect, fill=PANEL_ALT, border=(19, 22, 31), radius=8)
@@ -1994,6 +2119,22 @@ class GameScene(SceneBase):
 
         status_color = self.adapter.status_color(self.status_text)
         draw_text(surface, self.font_small, truncate_text(self.font_small, self.status_text, 332), 930, 686, status_color)
+
+    def _draw_tutorial_popup(self, surface: pygame.Surface) -> None:
+        if self.tutorial_popup is None:
+            return
+        step_index, total_steps = self._tutorial_progress()
+        popup_rects = draw_tutorial_popup(
+            surface,
+            title_font=self.tutorial_title_font,
+            body_font=self.font_body,
+            small_font=self.font_small,
+            card=self.tutorial_popup,
+            step_index=step_index,
+            total_steps=total_steps,
+        )
+        self.tutorial_next_rect = popup_rects["next"]
+        self.tutorial_skip_rect = popup_rects["skip"]
 
     def _draw_stack_popup(self, surface: pygame.Surface) -> None:
         if self.stack_popup is None:

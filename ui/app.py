@@ -12,7 +12,18 @@ class PygameApp:
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
         self.running = True
+        self.tutorial_enabled = True
+        self.tutorial_seen: set[str] = set()
         self.scene = StartScene(self)
+
+    def tutorial_pending(self, key: str) -> bool:
+        return self.tutorial_enabled and key not in self.tutorial_seen
+
+    def mark_tutorial_seen(self, key: str) -> None:
+        self.tutorial_seen.add(key)
+
+    def skip_all_tutorials(self) -> None:
+        self.tutorial_enabled = False
 
     def run(self) -> None:
         while self.running:

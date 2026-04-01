@@ -1,0 +1,566 @@
+\documentclass[12pt]{article}
+
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\geometry{margin=1in}
+\doublespacing
+
+\newcommand{\GameName}{Legends of Noblesse}
+\newcommand{\NamedGame}{a game named Legends of Noblesse}
+\newcommand{\placeholderfigure}[3]{
+\begin{figure}[H]
+\centering
+\fbox{
+\parbox[c][2.5in][c]{0.88\textwidth}{
+\centering
+\textbf{Insert Figure Here}\\[4pt]
+#3
+}
+}
+\caption{#2}
+\label{#1}
+\end{figure}
+}
+
+\title{Design and Implementation Report for \NamedGame}
+\author{Brandt Homan \\ \large ECE 348: Communication, Design and Tools}
+\date{March 31, 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\section*{Acknowledgments}
+We thank our course instructor for the structure and milestones that guide this work. We also thank classmates who test early builds and provide direct design feedback. We use local automation scripts to validate mechanics and produce balance summaries, and we document that process in this report.
+
+\newpage
+
+\section*{Letter of Transmittal}
+We prepare this report to document the design, rules, digital implementation, and testing results for \NamedGame. We complete this work during March 2026 as part of our ECE 348 project cycle.
+
+The purpose of this report is to explain exactly how we play \NamedGame, show how we encode the rules in software, and present testing evidence for quality claims. We include both rules-focused validation and simulation-focused analysis to support our conclusions.
+
+Our current recommendation is that we continue building \NamedGame with a focus on two priorities. First, we preserve depth and decision variety because those properties support fun, which is the quality claim we currently support most strongly. Second, we continue tuning resolution speed in long mirrors so \GameName can also satisfy ``fast'' more consistently.
+
+\subsection*{Document Analysis (Audience and Needs)}
+Our primary audience is an evaluator who needs a clear, editable technical narrative. We therefore prioritize:
+\begin{itemize}
+    \item direct, step-by-step instructions for how we play \GameName,
+    \item concrete examples of real board states and rule interactions,
+    \item explicit mapping between written rules and implemented functions, and
+    \item test evidence in tables that supports our quality claim.
+\end{itemize}
+
+\newpage
+
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+\section{Abstract / Executive Summary}
+This report describes \NamedGame, explains how we play \GameName, and documents how we implement and test \GameName digitally. We build \GameName as a two-player tactical card-combat system with five repeating phases: Replenish, Draw, Preparations, Siege, and Field Cleanup \cite{engine}.
+
+We show that our implementation enforces rule legality, resolves complex interactions, and supports reproducible testing. Our rule-coverage test passes all scenario groups and covers all declared ability labels (56/56) \cite{abilitytest}. We also include simulation summaries that expose strengths and bottlenecks \cite{tier20summary,tier20strength,tierlegacyraw}.
+
+Based on current evidence, we are most convinced that \GameName is fun because it delivers high decision density, many viable build paths, and highly variable match states. We also identify speed tuning as a clear next improvement target for specific mirror match conditions.
+
+\section{Introduction}
+We design \GameName to solve a specific design problem: we want a tactical card system that combines resource planning, positional combat, class progression, and battlefield control in one cohesive loop. We choose a digital implementation because \GameName contains enough conditional logic that manual tracking creates unnecessary overhead \cite{engine,gameui}.
+
+Figure~\ref{fig:start-screen} shows where each session of \GameName begins. We use this start flow to keep setup consistent and transparent before any tactical decisions occur.
+
+\placeholderfigure
+{fig:start-screen}
+{Start flow for \GameName}
+{Place a screenshot of the opening start screen with the Start button visible.}
+
+We build \GameName so each player can create a distinct plan from turn 1, and we reinforce that with selectable decks, classes, barracks, and battlefields \cite{selectui,premadedecks,cardcatalog}. We summarize the card pool in Table~\ref{tab:card-pool}.
+
+\section{Summary / Background}
+We treat \GameName as a formal decision system where each player manages limited resources, hidden information, and positional targets over repeated turns. We implement five major card categories: classes, barracks, battlefields, units, and tactics \cite{cardloader,cardcatalog}. Table~\ref{tab:card-pool} shows the current inventory.
+
+\begin{table}[H]
+\centering
+\caption{Current Card Pool for \GameName}
+\label{tab:card-pool}
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.8cm}|>{\centering\arraybackslash}p{1.3cm}|>{\raggedright\arraybackslash}p{4.2cm}|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Category} & \textbf{Count} & \textbf{Configured In} & \textbf{Role in Play} \\
+\hline
+Class & 5 & Setup (one per player) & Defines XP progression and class-gated abilities. \\
+\hline
+Barracks & 5 & Setup (one per player) & Sets opening ration economy and persistent barracks effect. \\
+\hline
+Battlefield & 9 & Setup (three selected per player; six placed total) & Controls map-based bonuses and targeting expansion. \\
+\hline
+Unit & 14 & Deck construction and combat & Provides front-line and back-line combat power. \\
+\hline
+Tactic & 8 & Deck construction and preparations actions & Applies targeted or global effects before siege resolution. \\
+\hline
+\end{tabularx}
+\normalsize
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+
+We rely on several core assumptions while we explain \GameName:
+\begin{itemize}
+    \item We assume two active players take legal actions in alternating action turns.
+    \item We assume each player understands card lines (Front/Back) and resource symbols.
+    \item We assume each player can read board control and battalion assignment state.
+\end{itemize}
+
+\section{Backed Arguments for Proposed Design}
+We argue that \GameName is a strong digital candidate for four reasons.
+
+First, we have high interaction density per turn. In one preparations phase, we can assign units, recover from grave, trade resources, and activate role-specific abilities \cite{engine,gameui}.
+
+Second, \GameName rewards planning across multiple horizons. We make immediate combat choices while also planning delayed payouts (for example, Supply Cache) and future unlocks (for example, Total Conquest priming) \cite{engine}.
+
+Third, digital enforcement is materially useful. Line-cap constraints, legality checks, pending-choice blockers, and ability caps are automatically enforced in code, which reduces human bookkeeping error \cite{engine,models,player}.
+
+Fourth, \GameName supports broad strategic variety. With 5 premade decks, 5 classes, 5 barracks, and battlefield selection/placement variance, we create many unique opening states before the first siege \cite{premadedecks,selectui}.
+
+\section{Methods / Procedures / Detailed Design}
+\subsection{Assumptions}
+We write and test \GameName under these design assumptions:
+\begin{itemize}
+    \item We run a two-player match with one active player index at any moment.
+    \item We initialize each player with a legal 30-card deck (premade or valid custom).
+    \item We cap resources at configured maximums to avoid unbounded accumulation.
+    \item We keep battalion line limits fixed (max three Front and three Back cards per battalion).
+\end{itemize}
+
+\subsection{Constraints}
+\subsubsection{System Constraints}
+\begin{itemize}
+    \item Phase order is fixed: Replenish $\rightarrow$ Draw $\rightarrow$ Preparations $\rightarrow$ Siege $\rightarrow$ Field Cleanup \cite{engine}.
+    \item Battalion structure is fixed to two battalions per player.
+    \item Non-unit card play is currently implemented in preparations actions (not mid-siege casting) \cite{engine}.
+    \item Resource caps are fixed at rations 10 and special resources 5 each \cite{player}.
+\end{itemize}
+
+\subsubsection{Deck and Setup Constraints}
+\begin{itemize}
+    \item Deck size is exactly 30 cards.
+    \item Per-card copy limit is 4.
+    \item Each player selects exactly one class, one barracks, and three battlefields \cite{premadedecks,selectui}.
+\end{itemize}
+
+\subsection{How We Configure \GameName Before Turn 1}
+We configure \GameName using the multi-step flow shown in Figure~\ref{fig:setup-flow} and Figure~\ref{fig:placement-board}. Table~\ref{tab:setup-sequence} lists each setup step.
+
+\placeholderfigure
+{fig:setup-flow}
+{Player setup workflow for \GameName}
+{Place a screenshot of the select screen showing deck, class, barracks, and battlefield choices.}
+
+\placeholderfigure
+{fig:placement-board}
+{Battlefield placement board for \GameName}
+{Place a screenshot of the placement stage with the 2x3 slot board and remaining battlefield list.}
+
+\begin{table}[H]
+\centering
+\caption{Setup Sequence for \GameName}
+\label{tab:setup-sequence}
+\begin{tabular}{|c|p{3.2cm}|p{8.3cm}|}
+\hline
+\textbf{Step} & \textbf{Action} & \textbf{What We Do} \\
+\hline
+1 & Deck Choice & We select one premade 30-card deck or build one custom legal 30-card deck. \\
+\hline
+2 & Class Choice & We select one class card that defines XP thresholds and unlocked abilities. \\
+\hline
+3 & Barracks Choice & We select one barracks card that sets starting rations and barracks effect. \\
+\hline
+4 & Battlefield Choice & We select exactly three battlefields per player from the battlefield pool. \\
+\hline
+5 & Placement & We alternate placement selections until all six battlefield slots are filled. \\
+\hline
+6 & Initialization & We draw opening hands, initialize resources, and enter Replenish. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{How We Play \GameName (Core Loop)}
+Table~\ref{tab:phase-loop} summarizes the five-phase loop we repeat until one barracks is breached.
+
+\begin{table}[H]
+\centering
+\caption{Turn Loop in \GameName}
+\label{tab:phase-loop}
+\begin{tabular}{|p{2.5cm}|p{3.2cm}|p{7.3cm}|}
+\hline
+\textbf{Phase} & \textbf{Primary Goal} & \textbf{Typical Actions} \\
+\hline
+Replenish & Refill economy & We gain base rations, delayed payouts, and controlled-field resource bonuses. \\
+\hline
+Draw & Add options & We draw cards and may use draw abilities (for example Clairvoyance, Efficient Tithe). \\
+\hline
+Preparations & Build battalions & We assign units, recover cards, trade resources, and cast tactics. \\
+\hline
+Siege & Resolve conflicts & We deploy battalions to legal targets, resolve combat, update control, and check breach. \\
+\hline
+Field Cleanup & Reset board state & We return survivors to barracks, clear battalions, and move to next turn. \\
+\hline
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:main-ui} is the most important operational screenshot for this section because it shows where we make almost all live decisions.
+
+\placeholderfigure
+{fig:main-ui}
+{Main action interface for \GameName}
+{Place a screenshot of the in-match screen showing hand, battalions, action buttons, and logs.}
+
+\subsection{Deep Rule Walkthrough With Play Examples}
+We include detailed play examples so a reader can follow exactly how we execute \GameName in practice.
+
+\subsubsection{Example 1: Preparations assignment and cost handling}
+In this example, we show how we assign units from hand to a battalion and pay costs with active discounts. The sequence in Table~\ref{tab:example1} matches code behavior in \texttt{assign\_hand\_card\_to\_battalion} \cite{engine}.
+
+\begin{table}[H]
+\centering
+\caption{Example 1 Sequence (Preparations)}
+\label{tab:example1}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Order} & \textbf{Observed Action and Result} \\
+\hline
+1 & We start preparations with Player 1 active and a legal unit selected in hand. \\
+\hline
+2 & We choose Battalion 1 and verify line room (Front/Back capacity check). \\
+\hline
+3 & We compute cost, then apply discounts from War-Wrought Citadel, Martyr's Square, and Iron Discipline if active. \\
+\hline
+4 & We spend resources and move the unit from hand into battalion state. \\
+\hline
+5 & If the unit is Supply Runner, we queue +1 pending ration for a future replenish. \\
+\hline
+6 & If the unit is Forged Dreadnought and extra ore remains, we apply +2 might and -2 will for this siege cycle. \\
+\hline
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:prep-example} should show a before/after pair for this sequence.
+
+\placeholderfigure
+{fig:prep-example}
+{Preparations example state in \GameName}
+{Place two screenshots: (left) before assigning a unit, (right) after assignment with updated resources and battalion card.}
+
+\subsubsection{Example 2: Targeted tactic resolution}
+In this example, we cast a targeted tactic and validate target legality before the card leaves hand. We use this sequence for cards such as Aegis Pulse and Sabotage Lines \cite{engine,cardcatalog}. Table~\ref{tab:example2} shows the flow.
+
+\begin{table}[H]
+\centering
+\caption{Example 2 Sequence (Targeted Tactic)}
+\label{tab:example2}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Order} & \textbf{Observed Action and Result} \\
+\hline
+1 & We select a non-unit card in hand and press Cast Non-Unit. \\
+\hline
+2 & We enter pending targeting mode (friendly unit, enemy front line, or battalion target). \\
+\hline
+3 & We click a legal battalion card target; invalid targets are rejected with status feedback. \\
+\hline
+4 & We apply tactic effect first (for example +2 will to target unit, or -1 might to enemy front line). \\
+\hline
+5 & After effect validation succeeds, we pay cost and move the tactic card from hand to grave. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Example 3: Siege deployment, overflow, and control change}
+This example is the center of \GameName. We follow the full siege path from deployment roll to slot combat resolution. Table~\ref{tab:example3} and Figure~\ref{fig:siege-example} describe exactly what we observe.
+
+\begin{table}[H]
+\centering
+\caption{Example 3 Sequence (Siege)}
+\label{tab:example3}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Order} & \textbf{Observed Action and Result} \\
+\hline
+1 & We enter siege and roll dice; winner chooses which player deploys first. \\
+\hline
+2 & We deploy each non-empty battalion to a legal target (battlefield slot, own barracks, or enemy barracks if fully unlocked). \\
+\hline
+3 & For each contested slot, we apply modifiers, compute total might, and execute front-to-back damage pipeline. \\
+\hline
+4 & If attack exceeds front-line will and back-line units exist, overflow triggers and can award effects (for example Arcane Bombardier draw, Scorched Wastes ration). \\
+\hline
+5 & We move dead cards to grave, return survivors to battalions, and update battlefield control based on survivors. \\
+\hline
+6 & If attackers survive an enemy barracks battle, we declare immediate victory. \\
+\hline
+\end{tabular}
+\end{table}
+
+\placeholderfigure
+{fig:siege-example}
+{Siege deployment and contested slot in \GameName}
+{Place a screenshot showing selected deployment target highlights and at least one contested slot with both sides assigned.}
+
+\subsubsection{Example 4: Silent Chasm and Profitable Standoff}
+We include this example because it demonstrates delayed value and decision carry-over between turns. Table~\ref{tab:example4} captures the sequence.
+
+\begin{table}[H]
+\centering
+\caption{Example 4 Sequence (Silent Chasm to Draw Choice)}
+\label{tab:example4}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Order} & \textbf{Observed Action and Result} \\
+\hline
+1 & We resolve a contested Silent Chasm battle where the prior controller keeps control. \\
+\hline
+2 & We grant one Profitable Standoff charge to that controller. \\
+\hline
+3 & On the next draw phase, we force top-two ordering choice before the normal draw completes. \\
+\hline
+4 & We select which of the top two cards remains on top, draw it, and leave the other second. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Example 5: End-of-match breach}
+Table~\ref{tab:example5} shows the final win path for \GameName. Figure~\ref{fig:win-screen} should confirm the result state clearly.
+
+\begin{table}[H]
+\centering
+\caption{Example 5 Sequence (Breach Win)}
+\label{tab:example5}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Order} & \textbf{Observed Action and Result} \\
+\hline
+1 & We deploy an attacking battalion to enemy barracks after unlocking that target condition. \\
+\hline
+2 & We resolve barracks defenders (assigned defenders plus barracks units) against attackers. \\
+\hline
+3 & If one or more attackers survive, we set winner to attacker index immediately. \\
+\hline
+4 & We transition from match scene to win scene with the correct player label. \\
+\hline
+\end{tabular}
+\end{table}
+
+\placeholderfigure
+{fig:win-screen}
+{Win state for \GameName}
+{Place a screenshot of the win scene showing the winning player and Return to Start button.}
+
+\subsection{Digital Implementation of Rules}
+We implement \GameName with a clean separation between rule engine and UI layers. The rule engine owns legality checks, state mutation, combat resolution, and progression. The UI layer only requests legal actions and renders current state \cite{engine,gameui,adapter}.
+
+Figure~\ref{fig:engine-map} should visualize this implementation map. Table~\ref{tab:rule-map} links specific rules to method implementations.
+
+\placeholderfigure
+{fig:engine-map}
+{Implementation map for \GameName}
+{Place a diagram showing UI scene layer -> adapter layer -> rules engine core methods -> card data JSON.}
+
+\begin{table}[H]
+\centering
+\caption{Rule-to-Code Mapping for \GameName}
+\label{tab:rule-map}
+\begin{tabular}{|p{4.6cm}|p{7.2cm}|}
+\hline
+\textbf{Rule Concept} & \textbf{Primary Implementation Entry Points} \\
+\hline
+Phase progression and ready gating & \texttt{advance\_phase}, \texttt{ready\_current\_player} \\
+\hline
+Preparations unit assignment and costs & \texttt{assign\_hand\_card\_to\_battalion}, \texttt{assign\_barracks\_unit\_to\_battalion} \\
+\hline
+Non-unit effect validation and execution & \texttt{play\_non\_unit\_card}, \texttt{\_apply\_non\_unit\_effect} \\
+\hline
+Class and battlefield activated abilities & \texttt{use\_efficient\_tithe}, \texttt{use\_clairvoyance}, \texttt{use\_ossuary\_keep}, etc. \\
+\hline
+Siege legality and deployment targets & \texttt{\_available\_attack\_targets}, \texttt{assign\_battalion\_to\_slot} \\
+\hline
+Combat and overflow resolution & \texttt{\_resolve\_slot\_battle}, \texttt{\_apply\_damage\_pipeline}, \texttt{\_apply\_overflow\_rewards} \\
+\hline
+Barracks breach and winner declaration & \texttt{\_resolve\_barracks\_attack} \\
+\hline
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:siege-report} should be included in this section because it demonstrates that \GameName exposes battle-side summaries for post-resolution inspection.
+
+\placeholderfigure
+{fig:siege-report}
+{Siege report popup for \GameName}
+{Place a screenshot of the siege report popup with slot results, deaths, and control changes listed.}
+
+\section{Results}
+\subsection{Rule and Ability Testing}
+We run our automated rule-validation suite from \texttt{tests/ability\_simulation.py}. Table~\ref{tab:ability-results} summarizes observed outputs \cite{abilitytest}.
+
+\begin{table}[H]
+\centering
+\caption{Rule Validation Results for \GameName}
+\label{tab:ability-results}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Metric} & \textbf{Observed Value} & \textbf{Interpretation} \\
+\hline
+Scenario groups passed & 4 / 4 & All major rule families execute correctly in scripted checks. \\
+\hline
+Declared ability labels & 56 & Total unique labels detected from card/class metadata. \\
+\hline
+Covered ability labels & 56 & Full label coverage reached in test scenarios. \\
+\hline
+Coverage ratio & 100\% & No declared ability label remains untested. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Fair/Fun/Fast Evidence Tables}
+We include two simulation outputs. The first dataset (120 matches) runs without forced overtime wins \cite{tier20summary,tier20strength}. The second dataset (1500 matches) is a legacy run that helps us inspect speed and overtime bias patterns \cite{tierlegacyraw,tier20report}.
+We summarize those two datasets in Table~\ref{tab:sim-summary}, and we convert that evidence into a quality-claim decision matrix in Table~\ref{tab:quality-check}.
+
+\begin{table}[H]
+\centering
+\caption{Simulation Summary for \GameName}
+\label{tab:sim-summary}
+\begin{tabular}{|p{4.7cm}|c|c|p{5.3cm}|}
+\hline
+\textbf{Dataset} & \textbf{Matches} & \textbf{Draw Rate} & \textbf{Key Observation} \\
+\hline
+No forced overtime dataset & 120 & 25.00\% & Similar-tier mirrors can run very long; median all-match length is 73 turns. \\
+\hline
+Legacy forced-overtime dataset & 1500 & 0.00\% & Average length is 33.18 turns, but overtime ordering strongly skews winner side in the audit report. \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Quality Claim Check for \GameName}
+\label{tab:quality-check}
+\begin{tabular}{|p{2.4cm}|p{4.2cm}|p{5.8cm}|}
+\hline
+\textbf{Claim} & \textbf{Evidence We Use} & \textbf{Current Position} \\
+\hline
+Fair & Matchup summaries and side win distributions & We see useful data for tuning, but side parity is not final in all tested settings. \\
+\hline
+Fun & Decision variety, card-role diversity, and deep examples in Section M & We are currently convinced \GameName is fun because strategic paths and interactions remain rich across turns. \\
+\hline
+Fast & Turn-length distributions and draw behavior & We see fast decisive outcomes in some settings, but long mirrors still reduce consistency. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Result We Defend}
+From the evidence above, we defend the claim that \GameName is fun in its current implementation. Our reasoning is:
+\begin{itemize}
+    \item We maintain many meaningful decisions each turn (resource conversion, assignment timing, tactic targeting, deployment path).
+    \item We support broad build diversity from setup combinations and battlefield placement variance.
+    \item We verify that major abilities and interactions are active and functioning instead of being placeholder text.
+\end{itemize}
+
+\section{Discussion of Results}
+Our results show that \GameName already succeeds at delivering layered tactical play, and that is why we currently defend fun as the primary quality claim. At the same time, our tables show that speed behavior is uneven in mirror-heavy situations, which gives us a clear iteration target.
+
+For the broader problem space, \GameName demonstrates that a digital card tactics system can combine deck identity, map control, and role progression without collapsing into random-only outcomes. We can therefore keep the current architecture and focus balancing effort where our tests show the largest impact.
+
+\section{Conclusions}
+This report explains what \GameName is, how we play \GameName, and how we implement rules for \GameName digitally. We provide detailed play examples, map rules to code methods, and present validation data in tables.
+
+Our present recommendation is to continue development with two direct next steps: tune long-mirror resolution speed and keep expanding scenario coverage for newly added mechanics. With those updates, \GameName can preserve its strongest property (fun strategic depth) while improving consistency for fast match completion.
+
+\newpage
+\section{References}
+\begin{thebibliography}{11}
+\bibitem{engine} \texttt{game/game.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{models} \texttt{game/models.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{player} \texttt{game/player.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{cardloader} \texttt{game/card\_loader.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{premadedecks} \texttt{game/premade\_decks.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{selectui} \texttt{ui/scene\_select.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{gameui} \texttt{ui/scene\_game.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{adapter} \texttt{adapters/game\_adapter.py}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{cardcatalog} \texttt{data/Cards/cards.md}, legends of noblesse project source, accessed March 31, 2026.
+\bibitem{abilitytest} \texttt{tests/ability\_simulation.py}, legends of noblesse project source, executed March 31, 2026.
+\bibitem{tier20summary} \texttt{reports/ai\_tier\_matchups\_20games/ai\_tier\_matchup\_summary.csv}, accessed March 31, 2026.
+\bibitem{tier20strength} \texttt{reports/ai\_tier\_matchups\_20games/ai\_tier\_overall\_strength.csv}, accessed March 31, 2026.
+\bibitem{tier20report} \texttt{reports/ai\_tier\_matchups\_20games/ai\_tier\_matchups\_report.tex}, accessed March 31, 2026.
+\bibitem{tierlegacyraw} \texttt{reports/ai\_tier\_matchups/ai\_tier\_raw\_matches.csv}, accessed March 31, 2026.
+\end{thebibliography}
+
+\newpage
+\appendix
+\section{Appendix A - Figure Placement Checklist}
+Table~\ref{tab:figure-checklist} gives a quick checklist of what to insert into each placeholder figure.
+
+\begin{table}[H]
+\centering
+\caption{Figure Insertion Checklist}
+\label{tab:figure-checklist}
+\begin{tabular}{|p{3.2cm}|p{8.5cm}|}
+\hline
+\textbf{Figure Label} & \textbf{What to Insert} \\
+\hline
+\texttt{fig:start-screen} & Start scene screenshot with title and Start button. \\
+\hline
+\texttt{fig:setup-flow} & Select screen screenshot showing deck/class/barracks/battlefield picker. \\
+\hline
+\texttt{fig:placement-board} & Placement stage screenshot with six slots and remaining card list. \\
+\hline
+\texttt{fig:main-ui} & In-match UI screenshot with hand, action buttons, and logs visible. \\
+\hline
+\texttt{fig:prep-example} & Before/after pair of preparations assignment and resource change. \\
+\hline
+\texttt{fig:siege-example} & Siege deployment screenshot with highlighted legal target and contested slot. \\
+\hline
+\texttt{fig:engine-map} & Architecture diagram: UI scene, adapter, engine, card data. \\
+\hline
+\texttt{fig:siege-report} & Siege report popup screenshot with slot-by-slot summary lines. \\
+\hline
+\texttt{fig:win-screen} & Win scene screenshot with winning player text. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Appendix B - Additional Play Log Template}
+We use Table~\ref{tab:play-log-template} as a reusable template when we document more examples for \GameName.
+
+\begin{table}[H]
+\centering
+\caption{Reusable Play Example Template}
+\label{tab:play-log-template}
+\begin{tabular}{|c|p{3.1cm}|p{7.2cm}|}
+\hline
+\textbf{Step} & \textbf{Phase} & \textbf{What We Observe} \\
+\hline
+1 & Draw &  \\
+\hline
+2 & Preparations &  \\
+\hline
+3 & Siege Deployment &  \\
+\hline
+4 & Siege Resolution &  \\
+\hline
+5 & Cleanup / Next Turn &  \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}
