@@ -4,13 +4,13 @@ This submission includes:
 - Full source code for the game.
 - A prebuilt, single-file Windows executable: `dist/LegendsOfNoblesse.exe`.
 
-## 1. Download The Source Code
+## 1. Download The Source Code To Play
 
 1. ZIP download:
    - Download the project ZIP from the submission/repository page.
    - Extract it to a local folder.
 2. Download .exe
-   - 
+   - Download LegendsOfNoblesse.exe and open it.
 
 After extraction, open a terminal in the project root (the folder containing `main.py`).
 
