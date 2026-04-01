@@ -6,13 +6,11 @@ This submission includes:
 
 ## 1. Download The Source Code
 
-Use one of the following:
-
-1. Git clone (if a repository URL is provided with the submission):
-   - `git clone <provided_repository_url>`
-2. ZIP download:
+1. ZIP download:
    - Download the project ZIP from the submission/repository page.
    - Extract it to a local folder.
+2. Download .exe
+   - 
 
 After extraction, open a terminal in the project root (the folder containing `main.py`).
 
